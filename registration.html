@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    
+</head>
+<body>
+    <!-- h1 tag for creating text in bold  -->
+    <h1 id="message"></h1>
+    <h1>Registration Page</h1>
+    <form action="">
+        <!-- form is similar to the normal forms which has input feilds -->
+        <!-- input tag for taking input from the user -->
+        <!-- Input types:what type of input should it takes
+        text:takes all char 
+        number:only takes number 
+        password:hide the text you type
+        email:similar to text 
+        -->
+        <!-- <br/> break tag send the all tag to the next line -->
+        <!-- placeholder for giving hint to the user inside input tag -->
+        <!-- &nbsp for space b/w tags -->
+        <!-- label is similar to span tag i.e takes only content(text) width -->
+        <!-- checked in input type radio means default cheked -->
+        <!-- textarea for multiple line of text -->
+        <!-- id means unique name for each tag to identify that particuler feild -->
+        <!-- input type=button when we are using form -->
+
+        <label>First Name </label> &nbsp; &nbsp; <input type="text" placeholder="Enter First Name" id="fisrtname" > &nbsp; &nbsp;
+        <label>Last Name </label> &nbsp; &nbsp;<input type="text" id="lastname" placeholder="Enter Last Name"><br/><br/>
+        <label>Email </label>&nbsp; &nbsp;<input type="email" id="email" placeholder="Enter Email"><br/><br/>
+        <label>User Name</label>&nbsp; &nbsp;<input type="text" id="username" placeholder="Enter User Name" > <br/><br/>
+        <label>Password</label>&nbsp; &nbsp;<input type="password" id="password" placeholder="Enter Password" > <br/><br/>
+        <label>Retype-Password</label>&nbsp; &nbsp;<input id="retypepassword" type="password" placeholder="Enter Password Again" > <br/><br/>
+        <label>phone</label>&nbsp; &nbsp;<input type="number" id="phone" placeholder="Enter Phone" > <br/><br/>
+        <label>Male</label>&nbsp; &nbsp; <input  checked value="Male" id="gender1" name="gender" type="radio">&nbsp; &nbsp;
+        <label>Female</label>&nbsp; &nbsp; <input  value="Female"  id="gender2"  name="gender" type="radio">&nbsp; &nbsp;
+        <label>Others</label>&nbsp; &nbsp; <input  value="Other"   id="gender3"  name="gender" type="radio"><br/><br/>
+        <h3>Enter Address</h3>
+        <textarea name="address"  cols="30" rows="10" id="address">Enter Address Here....</textarea><br/><br/>
+        <label>Zip Code<label> &nbsp;&nbsp; <input id="zipcode" type="text" placeholder="Enter ZipCode"><br/><br/>
+        <input type="button" class="btn btn-success" value="Save" onclick="signup()">
+    </form>
+
+
+
+<script>
+    // document.getElementById('fisrtname').value; here we are fetching the input value by using id name on the input tag
+    //checked for radio Buttons so,we can check which button is clicked(true) .based on that we can assign value of gender=gender{1,2,3..}
+    function signup(){
+       let fisrtname=document.getElementById('fisrtname').value;
+       let lastname=document.getElementById('lastname').value;
+       let email=document.getElementById('email').value;
+       let username=document.getElementById('username').value;
+       let password=document.getElementById('password').value;
+       let retypepassword=document.getElementById('retypepassword').value;
+       let phone=document.getElementById('phone').value;
+       let gender1=document.getElementById('gender1').checked;
+       let gender2=document.getElementById('gender2').checked;
+       let gender3=document.getElementById('gender3').checked;
+       let gender;
+
+       if(gender1){
+          gender=document.getElementById('gender1').value;
+       }
+       if(gender2){
+           gender=document.getElementById('gender2').value;
+       }
+       if(gender3){
+           gender=document.getElementById('gender3').value;
+       }
+       
+       let address=document.getElementById('address').value
+       let zipcode=document.getElementById('zipcode').value;
+
+
+    //    console.log("First Name:",fisrtname)
+    //    console.log("Last Name:",lastname)
+    //    console.log("Email:",email)
+    //    console.log("User Name",username)
+    //    console.log("Password:",password)
+    //    console.log("retypepassword:",retypepassword)
+    //    console.log("phone:",phone)
+    //    console.log("gender:",gender)
+    //    console.log("address:",address)
+    //    console.log("zipcode:",zipcode)
+
+    //here we covert indival values to one single object
+    //in array we have only values where as in object we have key - value pairs
+    // let signup=[fisrtname]
+
+    let signup={
+        fisrtname:fisrtname,
+        lastname:lastname,
+        email:email,
+        username:username,
+        password:password,
+        retypepassword:retypepassword,
+        phone:phone,
+        gender:gender,
+        address:address,
+        zipcode:zipcode
+    }
+    console.log(signup)
+   //innerHtml to store the values in normal html tags like div,h family,span .....
+   //in setTimeout we have callfunction which execute after some delay which we have assigend in miliseconds like 2000 means 2sec 
+   //    regular expressions
+
+   //like string for "" or '' similary for regular litrels for / /
+   // EX:[abc] a or b or c   only -1 char
+   //[^abc]  any char except a,b,c  -1 char
+   //[a-z] means a to z all char - 1char
+   //[a-z A-Z 0-9] means a to z ,A-Z AND 0-9 -1 digit or char
+   //[---]? occurs 0 or 1 time
+   //[---]+ occurs 1 or more times
+   //[---]* ocuurs 0 or more times
+   //[---]{n} occurs n times  
+   //[---]{n,} occurs n or more times
+   //[---]{n,m} occres atleat n time and not greater than m like range
+   // \d [0-9]
+   // \D [^0-9]
+
+   let firstname_reg=/[a-zA-Z]{3,}/   //include all alphabets(small and caps) with min char 3
+   let lastname_reg=/[a-zA-Z]{3,}/   //include all alphabets(small and caps) with min char 3
+   let email_reg=/[a-zA-Z0-9_\-\.]+[@][a-z]+[\.][a-z]{2,3}/
+   // [accept Char,space char(.,_,-) and 0-9 digits] altest one char or digit + @ +[small char] atleast 1 char + '.' +2 or 3 length small char  
+   //EX: rakesh192A@gmail.com r@gmail.in _@gmail.in 9@gmail.com  --->true
+   //EX: @gmail.com ra@.com  rakesh@gmail.comm rake109A@amxzone.canada --->false 
+
+   let username_reg=/[a-zA-Z0-9_\-\.]{3,}/   //include small,caps ,digits and spaecal char (._-) with min 3 length  
+   let password_reg= /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/    // include atleat 1 Small ,1 Caps ,1 digit WITH MIN 8 char length
+   let retypepassword_reg= /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/ //include atleat 1 Small ,1 Caps ,1 digit WITH MIN 8 char length
+   let phone_reg=/[0-9]{10}$/ //include exact 10 digit number  $ means end of the string or value
+   let address_reg=/[a-zA-Z]{5,}/g   //include small,caps and digits with min length 5 and max is infinite
+   let zipcode_reg=/[A-Z][0-9][A-Z][0-9][A-Z][0-9]$/  //A1A1A1  here A-means Char and 1 Means Digit EX:X14W6R
+
+//    console.log("First Name",firstname_reg.test(fisrtname))   
+//    console.log("Email",email_reg.test(email))
+//   in javascript we have test() function for checking regular expression parttens
+//syntax    regexp_variablename.test(user_entered_value) it return true or false based on the matching of critea of regular expresion
+
+// --------->validation part {students}-------->
+if(!firstname_reg.test(signup.fisrtname)){
+    document.getElementById('message').innerHTML="Enter valid First Name" 
+}else if(!lastname_reg.test(signup.lastname)){
+    document.getElementById('message').innerHTML="Enter valid Last Name" 
+}else if(!email_reg.test(signup.email)){
+    document.getElementById('message').innerHTML="Enter valid Email Address" 
+}else if(!username_reg.test(signup.username)){
+    document.getElementById('message').innerHTML="Enter valid User Name" 
+}else if(!password_reg.test(signup.password)){
+    document.getElementById('message').innerHTML="Enter valid Password" 
+}else if(!retypepassword_reg.test(signup.retypepassword)){
+    document.getElementById('message').innerHTML="Enter valid Retype-Password" 
+}else if(signup.retypepassword!==signup.password){
+    document.getElementById('message').innerHTML="Enter password and retype password same" 
+}else if(!phone_reg.test(signup.phone)){
+    document.getElementById('message').innerHTML="Enter 10 digit phone Number" 
+}else if(!address_reg.test(signup.address)){
+    document.getElementById('message').innerHTML="Enter valid Address" 
+}else if(!zipcode_reg.test(signup.zipcode)){
+    document.getElementById('message').innerHTML="Enter valid Zipcode" 
+}
+else{
+    document.getElementById('message').innerHTML="Sucessfully User Registered"
+    setTimeout(()=>{
+        document.getElementById('message').innerHTML=`Welcome ${username}`
+        localStorage.setItem("OTP", Math.floor(1000 + Math.random() * 9000));
+        //floor means lower number and ceil means upper number ex: floor(1.6)-> 1 and ceil(1.6)->2 
+        //here otp is generarted with 4 digit number
+        //window.open("reference_link")   by default it will open page in new tab
+        //window.open("reference_link","_self") by adding "_self" it will open the link in same page
+
+        
+
+        //here we are storing the user entered details in localstorage because we need the same data in signin and dashboard pages
+        //we dont have database to store the data that is why we are storing these data in local machine or browser
+        localStorage.setItem("firstname",fisrtname)
+        localStorage.setItem("lastname",lastname)
+        localStorage.setItem("email",email)
+        localStorage.setItem("username",username)
+        localStorage.setItem("password",password)
+        localStorage.setItem("retypepassword",retypepassword)
+        localStorage.setItem("gender",gender)
+        localStorage.setItem("phone",phone)
+        localStorage.setItem("address",address)
+        localStorage.setItem("zipcode",zipcode)
+
+
+
+
+
+
+
+
+        window.open('\otp.html',"_self")
+
+    },2000)
+    
+      
+}
+
+
+// ======local Storage========
+//stores key value pair
+// localStorage is similar to cookies and its session is life time 
+//it values cam only be deleted explecitly by user
+//syntx
+//EX:example of local storage
+// localStorage.setItem("name",123)
+// localStorage.getItem("name")//pedram
+
+   
+   
+   
+// --------->validation part-------->
+
+   
+
+   
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    }
+</script>
+</body>
+</html>

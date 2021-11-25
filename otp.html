@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP</title>
+</head>
+<body>
+    <h1 id="message"></h1>
+    <h1>OTP</h1>
+    <h1 id="showOTP"></h1>
+
+    <!-- we create an empty value h1 tag {here we show otp} -->
+
+    <form action="">
+        <input type="number" name="" id="otp">
+        <input type="button" value="submit" onclick="myFuc()" name="" id="">
+    </form>
+
+    <script>
+        //localStorage.getItem("OTP")->>9121
+        document.getElementById("showOTP").innerHTML = localStorage.getItem("OTP");
+        console.log(localStorage.getItem("user"))
+        //syntax
+        //left part
+        //document.getElementById("<idname>")--->we point to that particlur tag
+        //document.getElementById("<idname>").innerHTML--->we an assign values to the particur tag   
+            // EX:document.getElementById("<idname>").innerHTML="My name is pedram"
+        //right part
+        // localStorage.getItem("OTP");--->get the value from browser stored local storage value with key "OTP"
+
+        //we are storing the local storage opt value in html tag .ie h1 with id  "showOTP"
+
+        function myFuc(){
+        //this is user entered otp
+        let otp= document.getElementById('otp').value;//value entered in input tag will be stored here
+        //now our task is to check user entered otp and actual registration page generated otp is same or not
+        //localStorage.getItem("OTP")--->form browser local storage 
+        //otp--->from user entered otp from input
+        if(localStorage.getItem("OTP")==otp){//both match
+            window.open('\signin.html',"_self")
+        }else{
+           document.getElementById('message').innerHTML="Plaese Enter Valid OTP!!! ";//setting the empty message value to "Plaese Enter Valid OTP!!!" 
+           setTimeout(()=>{
+            document.getElementById('message').innerHTML="";   //here after 2 sec the meassage will be empty
+           },2000)
+        }
+    }
+    </script>
+</body>
+</html>

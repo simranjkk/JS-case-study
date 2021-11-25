@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin</title>
+</head>
+<body>
+    <h1 id="message"></h1>
+    <h1>Signin</h1>
+    <form action="">
+        <label for="">Email</label>
+        <input type="emial" name="" id="email" placeholder="Enter email id"><br/>
+        <label for="">Password</label>
+        <input type="password" name="" id="password" placeholder="Enter password"><br/>
+        <input type="button" value="Signin" onclick="signin()">
+        <!-- //onclick of this button signin function will call in js code -->
+
+    </form>
+
+<!-- //writing javascript code in html we should use script tag -->
+    <script>
+       function signin(){
+           let email=document.getElementById('email').value     //user entered email
+           let password=document.getElementById('password').value   //user entered password
+           let userEmail=localStorage.getItem('email')     //registartion user email
+           let userPassword=localStorage.getItem('password')   //registration user passwprd
+           // eneter email is equal to registered email and eneterd password is equal to registerd password
+           if(email===userEmail && password===userPassword ){  
+               //when email and password match its moves to dashbaord page
+              window.open('\dashboard.html',"_self")
+           }else{
+               //if email or password any one or both doest match we show message on the page for two sec that "Eneterd email or password is wrong"
+               //after 2 sec the message will be empty and autometicly hide
+               //we use innerHtml for assgining the value in html tags like h1 tag in below line which has id "message"
+            document.getElementById('message').innerHTML="Eneterd email or password is wrong";
+            setTimeout(()=>{
+                document.getElementById('message').innerHTML="";//here we are emptying the message value after 2 sec i.e 2000 mil sec
+            },2000)
+           }
+       }
+    </script>
+</body>
+</html>
